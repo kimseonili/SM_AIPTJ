@@ -19,5 +19,6 @@ from SM_AIPTJ import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('alphapose/',views.alphapose, name='alphapose'),
 
 ]
