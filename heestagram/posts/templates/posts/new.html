@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>New Post</h1>
+        <form action="{% url 'posts:create' %}" method="POST">
+            {% csrf_token %}
+
+            <h2>작 성 자</h2>
+            <input type="text" name='author' />
+
+            <h2>본 문</h2>
+            <textarea cols="40" rows="10" name="body"></textarea>
+
+            <br>
+            <input type="submit" value="작 성 하 기" />
+        </form>
+        <a href="{% url 'posts:index' %}">목 록</a>
+    </div>
+{% endblock %}

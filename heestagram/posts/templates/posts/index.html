@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <img src="../../static/posts/dami.jpg" />
+        <h1>Posts</h1>
+        
+        {% if posts %}
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>작 성 자</th>
+                        <th>본 문</th>
+                        <th>게 시 일</th>
+                        <th>상 세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <th>{{ post.id }}</th>
+                            <td>{{ post.author }}</td>
+                            <td>{{ post.body }}</td>
+                            <td>{{ post.created_at }}</td>
+                            <td><a href="{% url 'posts:detail' post.id %}">보 기</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No Posts.</p>
+        {% endif %}
+
+        <a href="{% url 'posts:new' %}">글 쓰 기</a>
+    </div>
+{% endblock %}

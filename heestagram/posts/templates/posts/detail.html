@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Post Detail</h1>
+        {% if post %}
+            <h2>작 성 자</h2>
+            <p>{{ post.body }}</p>
+
+            <h2>본 문</h2>
+            <p>{{ post.body }}</p>
+
+            <h2>게 시 일</h2>
+            <p>{{ post.created_at }}</p>
+        {% else %}
+            <p>No Post.</p>
+        {% endif %}
+
+        <a href="{% url 'posts:index' %}">목 록</a>
+        <a href="{% url 'posts:edit' post.id %}">수 정 하 기</a>
+        <a href="{% url 'posts:delete' post.id %}">삭 제 하 기</a>
+    </div>
+{% endblock %}
