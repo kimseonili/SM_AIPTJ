@@ -3,10 +3,10 @@ from .models import Post
 from django.utils import timezone
 import os
 import sys
-
-# sys.path.append(sys.path[0] + '\\AlphaPose\\scripts')
-# import demo_inference.py
 # Create your views here.
+def runAlphapose(request) :
+    os.system('inference.sh')
+    return redirect('/')
 
 def index(request):
     posts = Post.objects.all()
