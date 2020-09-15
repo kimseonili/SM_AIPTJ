@@ -3,9 +3,9 @@ from .models import Post
 from django.utils import timezone
 import os
 import sys
-sys.path.append(sys.path[0] + '\\AlphaPose\\scripts')
 
-import demo_inference.py
+# sys.path.append(sys.path[0] + '\\AlphaPose\\scripts')
+# import demo_inference.py
 # Create your views here.
 
 def index(request):
