@@ -157,6 +157,7 @@ def loop():
         yield n
         n += 1
 
+
 if __name__ == "__main__":
     dirList = os.listdir(args.inputpath)
     inDir = args.inputpath

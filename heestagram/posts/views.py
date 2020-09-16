@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from django.utils import timezone
-import os
-import sys
-# Create your views here.
-def runAlphapose(request) :
-    os.system('inference.sh')
-    return redirect('/')
+
 
 def index(request):
     posts = Post.objects.all()
