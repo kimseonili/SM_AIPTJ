@@ -18,6 +18,7 @@ def video(request):
     return render(request,'video.html')
 
 def result(request):
+    # os.removedirs(settings.MEDIA_ROOT)
     data = request.FILES.get('file')
     name = data.name.split('.')
     path = default_storage.save('./action.' + name[-1], ContentFile(data.read()))
@@ -38,8 +39,6 @@ def result(request):
                     cv2.imwrite(settings.MEDIA_ROOT + "./img/" + str(count).zfill(3) + ".jpg", frame)
                     count += 1
     cap.release()
-
-    # os.system('inference.sh')
 
     os.remove(settings.MEDIA_ROOT + "/action." + name[-1])
     from AlphaPose.scripts import demo_inference
