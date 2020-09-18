@@ -47,6 +47,12 @@ def parse_cfg(cfgfile):
     network to be built. Block is represented as a dictionary in the list
     
     """
+    import os
+    cfgfile = 'AlphaPose\\' + cfgfile
+    print("========darknet=========")
+    print(cfgfile)
+    print (os.path.abspath(cfgfile) )
+    print("=================================")
     file = open(cfgfile, 'r')
     lines = file.read().split('\n')     #store the lines in a list
     lines = [x for x in lines if len(x) > 0] #get read of the empty lines 
@@ -404,6 +410,12 @@ class Darknet(nn.Module):
     def load_weights(self, weightfile):
         
         #Open the weights file
+        weightfile = 'AlphaPose/' + weightfile
+        # import os
+        # print("=========weight=================")
+        # print(weightfile)
+        # print (os.path.abspath(weightfile) )
+        # print("=================================")
         fp = open(weightfile, "rb")
 
         #The first 4 values are header information 

@@ -665,6 +665,11 @@ def load_checkpoint(fpath):
         >>> fpath = 'log/my_model/model.pth.tar-10'
         >>> checkpoint = load_checkpoint(fpath)
     """
+    fpath = 'AlphaPose/' + fpath
+    # print("==========checkpoint===============")
+    # print(fpath)
+    # print (os.path.abspath(fpath) )
+    # print("=================================")
     if fpath is None:
         raise ValueError('File path is None')
     if not osp.exists(fpath):
