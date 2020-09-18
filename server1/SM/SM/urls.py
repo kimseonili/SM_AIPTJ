@@ -23,6 +23,8 @@ urlpatterns = [
     path('video/',views.video,name='video'),
     path('result/',views.result,name='result'),
     path('upload/',views.upload,name='upload'),
+    path('loading/',views.loadingRequest,name='loading'),
     # path('run/', views.runAlphapose, name='run'),
+
 
 ]
