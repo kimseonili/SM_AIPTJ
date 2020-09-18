@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="button_container">
-        <form action="{% url 'result' %}" id="button" class="btn btn-default btn-file" role="button" aria-pressed="true" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'result' %}" id="button" class="btn btn-default btn-file" role="button" aria-pressed="true" method="POST" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             <input type="file" name="file">
             <input type="submit" value="Get Start!">
