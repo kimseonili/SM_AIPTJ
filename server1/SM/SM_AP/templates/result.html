@@ -13,6 +13,26 @@
     <div class="jumbotron text-center mb-0" id="header">
         <h1>SM</h1>
         <p>- SWING MASTER -</p>
+        {% if user.is_authenticated %}
+            <div class="container">
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+
+                    {{ user.get_username}}님 환영합니다.
+                    <button type="submit" class="btn btn-primary">LOGOUT</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="container">
+                <a href="{% url 'login' %}">
+                    <button type="button" class="btn btn-primary">LOGIN</button>
+                </a>
+
+                <a href="{% url 'signup' %}">
+                    <button type="button" class="btn btn-primary">SIGN UP</button>
+                </a>
+            </div>
+        {% endif %}
     </div>
     <nav class="navbar navbar-expand-sm navber-dark bg-dark">
         <a href="{% url 'index' %}" class="navbar-brand">Introduce</a>
@@ -30,7 +50,7 @@
     <div class="container-fluid">
         <div class="embed-responsive embed-responsive-4by3" id="video">
             <video controls autoplay loop class="embed-responsive-item">
-                <source src="../static/KakaoTalk_20200909_153418558.mp4" type="video/mp4">
+                <source src="../static/result.mp4" type="video/mp4">
             </video>
         </div>
         <div class="row">
