@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SM_PROJECT</title>
-    <link rel="stylesheet" href="../static/video.css" type="text/css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/login.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -13,26 +13,6 @@
     <div class="jumbotron text-center mb-0" id="header">
         <h1>SM</h1>
         <p>- SWING MASTER -</p>
-        {% if user.is_authenticated %}
-            <div class="container">
-                <form action="{% url 'logout' %}" method="POST">
-                    {% csrf_token %}
-
-                    {{ user.get_username}}님 환영합니다.
-                    <button type="submit" class="btn btn-primary">LOGOUT</button>
-                </form>
-            </div>
-        {% else %}
-            <div class="container">
-                <a href="{% url 'login' %}">
-                    <button type="button" class="btn btn-primary">LOGIN</button>
-                </a>
-
-                <a href="{% url 'signup' %}">
-                    <button type="button" class="btn btn-primary">SIGN UP</button>
-                </a>
-            </div>
-        {% endif %}
     </div>
     <nav class="navbar navbar-expand-sm navber-dark bg-dark">
         <a href="{% url 'index' %}" class="navbar-brand">Introduce</a>
@@ -46,11 +26,34 @@
             </ul>
         </div>
     </nav>
-    <div class="container-fluid">
-        <h1 class="title">Video Recording</h1>
-    </div>
-    <div class="button_container">
-        <a href="{% url 'result' %}" id="button" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Get Start!</a>
+    <div class="container">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <h1>Sign Up</h1>
+
+            <div class="form-group">
+                <label for="username">아 이 디</label>
+                <input type="text" id="username" name="username" placeholder="아 이 디">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">비 밀 번 호</label>
+                <input type="password" id="password" name="password" placeholder="비 밀 번 호">
+            </div>
+
+            <div class="form-group">
+                <label for="password_check">비 밀 번 호</label>
+                <input type="password" id="password_check" name="password_check" placeholder="비 밀 번 호 확 인">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">회 원 가 입</button>
+        </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

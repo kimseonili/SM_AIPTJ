@@ -24,7 +24,9 @@ urlpatterns = [
     path('result/',views.result,name='result'),
     path('upload/',views.upload,name='upload'),
     path('loading/',views.loadingRequest,name='loading'),
-    # path('run/', views.runAlphapose, name='run'),
+    path('signup/',views.signup,name='signup'),
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout')
 
 
 ]
