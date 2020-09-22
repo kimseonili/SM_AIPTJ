@@ -28,6 +28,7 @@ def result(request):
     global percentage
     percentage = [0, '|','프레임 분할중']
     data = request.FILES.get('file')
+    feedback = []
     if data == None :
         pass 
     else :
@@ -72,8 +73,14 @@ def result(request):
         for i in range(len(img_array)):
             out.write(img_array[i])
         out.release()
-    
-    return render(request,'result.html')
+        from SM_AP.convert_to_npy import npyConverter
+        npyConverter = npyConverter(percentage)
+        from SM_AP.feedback import BodyCompare
+        BodyValue = BodyCompare()
+        feedback = BodyValue.startCompare(percentage)
+    # feedback = {'상' : ['1','2'], '하' : ['1','2'] }
+
+    return render(request,'result.html', {'feedback' : feedback})
 @csrf_exempt
 def loadingRequest(request) :
     return HttpResponse(percentage)

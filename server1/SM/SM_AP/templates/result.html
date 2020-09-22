@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,34 @@
     <link rel="stylesheet" href="../static/result.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 </head>
+
 <body>
     <div class="jumbotron text-center mb-0" id="header">
         <h1>SM</h1>
         <p>- SWING MASTER -</p>
         {% if user.is_authenticated %}
-            <div class="container">
-                <form action="{% url 'logout' %}" method="POST">
-                    {% csrf_token %}
+        <div class="container">
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
 
-                    {{ user.get_username}}님 환영합니다.
-                    <button type="submit" class="btn btn-primary">LOGOUT</button>
-                </form>
-            </div>
+                {{ user.get_username}}님 환영합니다.
+                <button type="submit" class="btn btn-primary">LOGOUT</button>
+            </form>
+        </div>
         {% else %}
-            <div class="container">
-                <a href="{% url 'login' %}">
-                    <button type="button" class="btn btn-primary">LOGIN</button>
-                </a>
+        <div class="container">
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-primary">LOGIN</button>
+            </a>
 
-                <a href="{% url 'signup' %}">
-                    <button type="button" class="btn btn-primary">SIGN UP</button>
-                </a>
-            </div>
+            <a href="{% url 'signup' %}">
+                <button type="button" class="btn btn-primary">SIGN UP</button>
+            </a>
+        </div>
         {% endif %}
     </div>
     <nav class="navbar navbar-expand-sm navber-dark bg-dark">
@@ -57,34 +60,71 @@
         <div class="row">
             <div class="col-4">
                 <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">전체평가</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">상체</a>
-                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">하체</a>
+                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+                        href="#list-home" role="tab" aria-controls="home">전체평가</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                        href="#list-profile" role="tab" aria-controls="profile">상체</a>
+                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+                        href="#list-messages" role="tab" aria-controls="messages">하체</a>
                 </div>
             </div>
             <div class="col-8">
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                        인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 
-                        인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+                        aria-labelledby="list-home-list">
+                        {{feedback.상}}
+                        {% if feedback.하 %}
+                        ,
+                            {{feedback.하}}
+                        {% endif %}
                     </div>
                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                        인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 
-                        인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 
+                        {{feedback.상}}
                     </div>
                     <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-                        인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 
-                        인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능 인공지능
+                        {% if feedback.하 %}
+                            {{feedback.하}}
+                        {% else %}
+                        {{feedback.상}}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="button_container">
-        <a href="{% url 'index' %}" id="button" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">First Page</a>
+        <a href="{% url 'index' %}" id="button" class="btn btn-secondary btn-lg active" role="button"
+            aria-pressed="true">First Page</a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
+
+<script>
+    total = document.getElementById('list-home')
+    up = document.getElementById('list-profile')
+    down = document.getElementById('list-messages')
+
+
+    function convert(elem) {
+        list = elem.innerText.replaceAll('\'', '').replaceAll('[', '').replaceAll(']', '').split(',')
+        elem.innerHTML = ''
+        for (let i = 0; i < list.length; i++) {
+            elem.innerHTML += (i + 1) + ". " + list[i]
+            elem.innerHTML += "<br>"
+        }
+    }
+    convert(total)
+    convert(up)
+    convert(down)
+
+</script>
