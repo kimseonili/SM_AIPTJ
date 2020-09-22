@@ -26,8 +26,15 @@
 }
 #carouselExampleIndicators{
     display: flex;
-    max-width: 50%; 
+    width: 500px; 
 }
+
+.carousel-item-left{
+    display: flex;
+    width: 500px; 
+    height: auto;
+}
+
 .title_1{
     font-family: 'Nanum Gothic Coding', monospace;
     margin-top: 30px;
