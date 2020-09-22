@@ -18,10 +18,10 @@ with open(json_file) as f:
             zero_filled_number = number_str.zfill(3)
             for k in range(len(json_obj[str(j+1)+' '+zero_filled_number+'.jpg']['people'])):
                 # print(len(json_obj['swing_'+str(j+1)+' '+zero_filled_number+'.jpg']['people']))
-                nose_x=json_obj[str(j+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][0]
-                nose_y=json_obj[str(j+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][1]
-                lankle_x=json_obj[str(j+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][39]
-                lankle_y=json_obj[str(j+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][40]
+                nose_x=json_obj[str(+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][0]
+                nose_y=json_obj[str(+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][1]
+                lankle_x=json_obj[str(+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][39]
+                lankle_y=json_obj[str(+1)+' '+zero_filled_number+'.jpg']['people'][k]['pose_keypoints_2d'][40]
                 # print(nose_x,nose_y,lankle_x,lankle_y)
                 nl_distence=((nose_x-lankle_x)**2 + (nose_y-lankle_y)**2)**(1/2)
                 distances.append(nl_distence)
