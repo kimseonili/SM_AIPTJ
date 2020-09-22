@@ -10,10 +10,8 @@ import plotly.graph_objs as go
 from fastdtw import fastdtw
 from scipy.spatial.distance import euclidean
 from statistics import mean
-#!pip install fastdtw
-#!pip install ploty
 
-
+# 필요한 기본 수치값 연산 클라스~
 class BodyValue:
     def __init__(self,pose):
         self.pose = pose
@@ -145,7 +143,7 @@ for i, (pose_std,pose) in enumerate(zip(poses_std,poses)):
         upper_lower_leg_angle_l_std.append(BodyValue(pose_std).upper_lower_leg_angle_l())
         upper_lower_leg_angle_l.append(BodyValue(pose).upper_lower_leg_angle_l())
 
-    
+# 각 부위별 수치값에 필터적용    
 between_feet_vectors_filtered_std = medfilt(medfilt(np.array(between_feet_vectors_std), 5), 5)
 between_feet_vectors_filtered = medfilt(medfilt(np.array(between_feet_vectors), 5), 5)
 
@@ -197,17 +195,6 @@ upper_lower_leg_angle_r_list = upper_lower_leg_angle_r_filtered.tolist()
 
 upper_lower_leg_angle_l_list_std = upper_lower_leg_angle_l_filtered_std.tolist()
 upper_lower_leg_angle_l_list = upper_lower_leg_angle_l_filtered.tolist()
-
-# # 2차원 배열로 전체 영상에 대한 값 배열 확장
-# between_feet_all.append(between_feet_vectors_list)
-# between_hip_all.append(between_hip_vectors_list)
-# shoulder_step_all.append(shoulder_step_vectors_list)
-# upper_arm_torso_r_all.append(upper_arm_torso_angle_r_list)
-# upper_arm_torso_l_all.append(upper_arm_torso_angle_l_list)
-# upper_lower_arm_r_all.append(upper_lower_arm_angle_r_list)
-# upper_lower_arm_l_all.append(upper_lower_arm_angle_l_list)
-# upper_lower_leg_r_all.append(upper_lower_leg_angle_r_list)
-# upper_lower_leg_l_all.append(upper_lower_leg_angle_l_list)
 
 # 넘파이로 변환
 between_feet_np_std = np.array(between_feet_vectors_list_std)
