@@ -2,10 +2,10 @@ import json
 import numpy as np
 import os
 
-      
- 
-json_file = os.path.join('json_dir')
-json_file=str(json_file)
+class npyConverter :
+    def startConvert():      
+        json_file = os.path.join('alphapose-results.json')
+        json_file=str(json_file)
 
 with open(json_file) as f:
         json_obj = json.load(f)
@@ -30,10 +30,10 @@ with open(json_file) as f:
                 # print(distances)
                 
 
-                  
-            keypoints = np.array(json_obj[str(j+1)+' '+zero_filled_number+'.jpg']['people'][index_]['pose_keypoints_2d'])#Alphapose 형식
-            all_keypoints[i] = keypoints.reshape((18, 3))
-            # print(all_keypoints[i])
-                
-        output_dir ='npy_dir'+str(j+1)
-        np.save(output_dir, all_keypoints)
+                        
+                    keypoints = np.array(json_obj[zero_filled_number+'.jpg']['people'][index_]['pose_keypoints_2d'])#Alphapose 형식
+                    all_keypoints[i] = keypoints.reshape((18, 3))
+                    # print(all_keypoints[i])
+                        
+                output_dir ='my_npy.npy'
+                np.save(output_dir, all_keypoints)
