@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.utils import timezone
 
-# Create your views here.
 
 def index(request):
     posts = Post.objects.all()
